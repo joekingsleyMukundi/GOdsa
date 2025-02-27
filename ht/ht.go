@@ -112,7 +112,7 @@ func (ht *HashTable[K, V]) PrintTable() {
 }
 func main() {
 	// Create a hash table with 5 buckets
-	ht := NewHashTable[string, int32](5)
+	ht := NewHashTable[string, int32](7)
 
 	// Insert key-value pairs
 	ht.Insert("Alice", 25)
