@@ -72,6 +72,23 @@ func (bst *BST[T]) FindMax() (T, bool) {
 	}
 	return current.value, true
 }
+func (bst *BST[T]) BFS() []T {
+	result := []T{}
+	queue := []*Node[T]{}
+	currentNode := bst.root
+	queue = append(queue, currentNode)
+	for len(queue) > 0 {
+		currentNode = queue[0]
+		result = append(result, currentNode.value)
+		if currentNode.left != nil {
+			queue = append(queue, currentNode.left)
+		}
+		if currentNode.right != nil {
+			queue = append(queue, currentNode.right)
+		}
+	}
+	return result
+}
 func (bst *BST[T]) Delete(value T) {
 	bst.root = deleteHelper(bst.root, value)
 }
@@ -129,7 +146,7 @@ func (bst *BST[T]) PreOrderTraversal() {
 // Helper function for pre-order traversal
 func preOrderHelper[T constraints.Ordered](node *Node[T]) {
 	if node != nil {
-		fmt.Print(node.value, " ")
+		fmt.Println(node.value)
 		preOrderHelper(node.left)
 		preOrderHelper(node.right)
 	}
